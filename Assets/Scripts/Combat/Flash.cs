@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Material _defaultMaterial;
+    [SerializeField] private Material _whiteFlashMaterial;
+    [SerializeField] private float _flashTime = 0.1f;
+
+    private SpriteRenderer[] _spriteRenderers;
+
+    private void Awake()
     {
-        
+        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartFlash()
     {
-        
+        StartCoroutine(FlashRoutine());
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        foreach(SpriteRenderer sr in _spriteRenderers)
+        {
+            sr.material = _whiteFlashMaterial;
+            sr.color = Color.white; 
+        }
+
+        yield return new WaitForSeconds(_flashTime);
+
+        SetDefaultMaterial();
+    }
+
+    private void SetDefaultMaterial()
+    {
+        foreach (SpriteRenderer sr in _spriteRenderers)
+        {
+            sr.material = _defaultMaterial;
+        }
     }
 }
