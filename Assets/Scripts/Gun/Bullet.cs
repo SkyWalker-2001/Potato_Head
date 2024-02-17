@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int _damageAmount = 1;
     [SerializeField] private float _knockBackThrust = 20;
 
+    [SerializeField] private GameObject _bulletVFX;
+
     private Vector2 _fireDirection;
     private Gun _gun;
 
@@ -29,8 +31,11 @@ public class Bullet : MonoBehaviour
     {
         _rigidBody.velocity = _fireDirection * _moveSpeed;
     }
-
+     
     private void OnTriggerEnter2D(Collider2D other) {
+
+        Instantiate(_bulletVFX, transform.position, Quaternion.identity);
+
         Health health = other.gameObject.GetComponent<Health>();
         health?.TakeDamage(_damageAmount);
 
