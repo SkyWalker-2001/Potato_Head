@@ -1,9 +1,17 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour
 {
+    public static Action<Health> OnDeath;
+
+    public GameObject SplatterPrefab => _splatterPrefab;
+    public GameObject DeathVFX => _deathVFX;
+
+    [SerializeField] private GameObject _splatterPrefab;
+    [SerializeField] private GameObject _deathVFX;
     [SerializeField] private int _startingHealth = 3;
 
     private int _currentHealth;
@@ -12,15 +20,21 @@ public class Health : MonoBehaviour
         ResetHealth();
     }
 
-    public void ResetHealth() {
+    
+
+    public void ResetHealth() { 
         _currentHealth = _startingHealth;
     }
 
     public void TakeDamage(int amount) {
         _currentHealth -= amount;
 
-        if (_currentHealth <= 0) {
+        if (_currentHealth <= 0) 
+        {
+            OnDeath?.Invoke(this);
+
             Destroy(gameObject);
         }
     }
+ 
 }

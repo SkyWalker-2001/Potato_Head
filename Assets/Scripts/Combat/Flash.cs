@@ -47,7 +47,7 @@ public class Flash : MonoBehaviour
 
             if (_colorChanger)
             {
-                _colorChanger.SetColor(_colorChanger.DefaultColor);
+                _colorChanger.SetColor(_colorChanger.DefaultColor );
             }
         }
     }
