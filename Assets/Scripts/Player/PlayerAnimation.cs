@@ -42,7 +42,6 @@ public class PlayerAnimation : MonoBehaviour
     private void FixedUpdate()
     {
         _velocityBeforePhysicsUpdate = _rigidBody.velocity;
-        Debug.Log(_velocityBeforePhysicsUpdate);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

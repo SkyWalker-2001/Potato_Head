@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiscoBall : MonoBehaviour
+public class DiscoBall : MonoBehaviour, IHitable
 {
-    // Start is called before the first frame update
-    void Start()
+    private Flash _flash;
+    private DiscoBallManager _discoBallManager;
+
+    private void Awake()
     {
-        
+        _flash = GetComponent<Flash>();
+        _discoBallManager = FindFirstObjectByType<DiscoBallManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeHit()
     {
-        
+        _discoBallManager.DiscoBallParty();
+        _flash.StartFlash();
     }
+
+
 }
