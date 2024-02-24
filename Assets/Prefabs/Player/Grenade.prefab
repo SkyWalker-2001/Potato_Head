@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4e79ce18e84094aa3a98f2ed015fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explodeVFX: {fileID: 3877958418527766873, guid: ae3801ff5eb1fed4488e8427bf234ce3, type: 3}
+  _launchForce: 15
+  _torqueAmount: 0.2
 --- !u!50 &5519436033939418546
 Rigidbody2D:
   serializedVersion: 4
