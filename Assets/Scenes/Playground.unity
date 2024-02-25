@@ -6665,6 +6665,7 @@ GameObject:
   - component: {fileID: 2011273898}
   - component: {fileID: 2011273899}
   - component: {fileID: 2011273900}
+  - component: {fileID: 2011273902}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -18946,8 +18947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e652642db6260344cb636626629dc1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splatterPrefab: {fileID: 0}
-  _deathVFX: {fileID: 0}
+  _splatterPrefab: {fileID: 4686121967870239017, guid: b7b58a74b90b9ad43a137462883c17a8, type: 3}
+  _deathVFX: {fileID: 5275956630321977794, guid: 63ea31d650ee5264496cbe1a3618bf23, type: 3}
   _startingHealth: 5
 --- !u!114 &2011273896
 MonoBehaviour:
@@ -19066,6 +19067,21 @@ MonoBehaviour:
   _characterCowboyHatTransform: {fileID: 2140860561}
   _cowboyHatTiltModifer: 2
   _yLandVelocityCheck: -20
+--- !u!114 &2011273902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817729410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8465c0d879f9224baa11936441c1e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultMaterial: {fileID: 2100000, guid: ed226c224f45d2e4a918e4e804e9bc82, type: 2}
+  _whiteFlashMaterial: {fileID: 2100000, guid: d6b14f4252ebadc408c5de4b56ff37e2, type: 2}
+  _flashTime: 0.1
 --- !u!1 &2043640393
 GameObject:
   m_ObjectHideFlags: 0
@@ -19685,63 +19701,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7047693569403897356, guid: c8ed0057b73acac4eb7ba09e8c2d7556, type: 3}
   m_PrefabInstance: {fileID: 2049011533924859868}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &9080983683408840118
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2418461629002085880, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689727717087467278, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
-      propertyPath: m_Name
-      value: Grenade
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fa00ef4d7d8f3e04db91a04c4385dee0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -19757,4 +19716,3 @@ SceneRoots:
   - {fileID: 2084092025}
   - {fileID: 1173773767}
   - {fileID: 198292669}
-  - {fileID: 9080983683408840118}

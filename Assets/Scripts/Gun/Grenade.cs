@@ -7,12 +7,21 @@ using System;
 public class Grenade : MonoBehaviour
 {
     public Action OnExplode;
+    public Action OnBeep;
 
     [SerializeField] private GameObject _explodeVFX;
+    [SerializeField] private GameObject _grenadeLight;
     [SerializeField] private float _launchForce = 15f;
     [SerializeField] private float _torqueAmount = 2f;
+    [SerializeField] private float _explosionRadius = 3.5f;
+    [SerializeField] private LayerMask _enemyLayerMask;
+    [SerializeField] private int _damageAmount = 3;
+    [SerializeField] private float _lightBlinkTime = .15f;
+    [SerializeField] private int _totalBlinks = 3;
+    [SerializeField] private int _explodeTime = 3;
 
- 
+
+    private int _currentBlinks;
     private Rigidbody2D _rigidbody;
     private CinemachineImpulseSource _impulseSource;
 
@@ -20,12 +29,20 @@ public class Grenade : MonoBehaviour
     {
         OnExplode += Explosion;
         OnExplode += GrenadeScreenShake;
+        OnExplode += DamageNearBy;
+        OnExplode += AudioManager.Instance.Grenade_OnExplode;
+        OnBeep += BlinkLight;
+        OnBeep += AudioManager.Instance.Grenade_OnBeep;
     }
 
     private void OnDisable()
     {
         OnExplode -= Explosion;
         OnExplode -= GrenadeScreenShake;
+        OnExplode -= DamageNearBy;
+        OnExplode -= AudioManager.Instance.Grenade_OnExplode;
+        OnBeep -= BlinkLight;
+        OnBeep -= AudioManager.Instance.Grenade_OnBeep;
     }
 
     private void Awake()
@@ -37,6 +54,7 @@ public class Grenade : MonoBehaviour
     private void Start()
     {
         LaunchGrenade();
+        StartCoroutine(CountDownExplodeRoutine());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +82,35 @@ public class Grenade : MonoBehaviour
     private void GrenadeScreenShake()
     {
         _impulseSource.GenerateImpulse();
+    }
+
+    private void DamageNearBy()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
+        foreach (Collider2D hit in hits)
+        {
+            Health health = hit.GetComponent<Health>();
+            health?.TakeDamage(_damageAmount);
+        }
+    }
+
+    private IEnumerator CountDownExplodeRoutine()
+    {
+        while(_currentBlinks < _totalBlinks)
+        {
+            yield return new WaitForSeconds(_explodeTime / _totalBlinks);
+            OnBeep?.Invoke();
+            yield return new WaitForSeconds(_lightBlinkTime);
+            _grenadeLight.SetActive(false);
+        }
+
+        OnExplode?.Invoke();
+    }
+
+    private void BlinkLight()
+    {
+        _grenadeLight.SetActive(true);
+        _currentBlinks++;
     }
 }
  

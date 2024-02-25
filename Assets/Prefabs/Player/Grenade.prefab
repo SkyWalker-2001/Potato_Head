@@ -187,8 +187,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explodeVFX: {fileID: 3877958418527766873, guid: ae3801ff5eb1fed4488e8427bf234ce3, type: 3}
+  _grenadeLight: {fileID: 329207312174543159}
   _launchForce: 15
   _torqueAmount: 0.2
+  _explosionRadius: 3.5
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _damageAmount: 3
+  _lightBlinkTime: 0.15
+  _totalBlinks: 3
+  _explodeTime: 3
 --- !u!50 &5519436033939418546
 Rigidbody2D:
   serializedVersion: 4
