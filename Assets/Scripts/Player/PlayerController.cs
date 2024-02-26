@@ -73,6 +73,12 @@ public class PlayerController : MonoBehaviour
         ExtraGravity();
     }
 
+    private void OnDestroy()
+    {
+        Fade fade = FindFirstObjectByType<Fade>();
+        fade.FadeInAndOut();
+    }
+
     public bool CheckGrounded()
     {
         Collider2D isGrounded = Physics2D.OverlapBox(_feetTransform.position, _groundCheck, 0f, _groundLayer);

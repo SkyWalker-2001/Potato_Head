@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         Gun.OnGrenadeShoot += Gun_OnGrenadeShoot;
         PlayerController.OnJump += PlayerController_OnJump;
         PlayerController.OnJetpack += PlayerController_OnJetPack;
-        Health.OnDeath += Health_OnDeath;
+        Health.OnDeath += HandleDeath;
         DiscoBallManager.OnDiscoBallHitEvent += DiscoBallMusic;
     }
 
@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
         Gun.OnGrenadeShoot -= Gun_OnGrenadeShoot;
         PlayerController.OnJump -= PlayerController_OnJump;
         PlayerController.OnJetpack -= PlayerController_OnJetPack;
-        Health.OnDeath -= Health_OnDeath;
+        Health.OnDeath -= HandleDeath;
         DiscoBallManager.OnDiscoBallHitEvent -= DiscoBallMusic;
 
     }
@@ -162,6 +162,11 @@ public class AudioManager : MonoBehaviour
         PlayRandomSound(_soundCollectionSO.Splat);
     }
 
+    private void Health_OnDeath()
+    {
+        PlayRandomSound(_soundCollectionSO.Splat);
+    }
+
     private void PlayerController_OnJetPack()
     {
         PlayRandomSound(_soundCollectionSO.JetPack);
@@ -185,6 +190,11 @@ public class AudioManager : MonoBehaviour
     public void Enemy_OnPlayerHit()
     {
         PlayRandomSound(_soundCollectionSO.PlayerHit);
+    } 
+    
+    public void AudioManager_MegaKill()
+    {
+        PlayRandomSound(_soundCollectionSO.MegaKill);
     }
 
     #endregion
@@ -201,6 +211,46 @@ public class AudioManager : MonoBehaviour
         float soundLength = _soundCollectionSO.DiscoParty[0].Clip.length;
         //Invoke("FightMusic", soundLength);
         Utils.RunAfterDelay(this, soundLength, FightMusic);
+    }
+
+    #endregion
+
+    #region CUSTOM_SFX_LOGIC
+
+    private List<Health> _deathList = new List<Health>();
+    private Coroutine _deathCoroutine;
+
+    private void HandleDeath(Health health)
+    {
+        bool isEnemy = health.GetComponent<Enemy>();
+
+        if (isEnemy)
+        {
+            _deathList.Add(health);
+        }
+
+        if(_deathCoroutine == null)
+        {
+            _deathCoroutine = StartCoroutine(DeathWindowsRoutine());
+        }
+    }
+
+    private IEnumerator DeathWindowsRoutine()
+    {
+        yield return null;
+
+        int megaKillAmount = 3;
+
+        if(_deathList.Count >= megaKillAmount)
+        {
+            AudioManager_MegaKill();
+        }
+
+        Health_OnDeath();
+
+        _deathList.Clear();
+
+        _deathCoroutine = null;
     }
 
     #endregion
