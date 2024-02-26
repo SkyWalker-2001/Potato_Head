@@ -5315,6 +5315,7 @@ MonoBehaviour:
   _coyoteTime: 0.1
   _jetpackTime: 2
   _jetpackStrength: 11
+  _maxFallSpeedVelocity: -20
 --- !u!114 &7779871559905210656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5334,7 +5335,7 @@ MonoBehaviour:
   _characterSpriteTransform: {fileID: 212279605151781346}
   _characterCowboyHatTransform: {fileID: 5430139158050742295}
   _cowboyHatTiltModifer: 2
-  _yLandVelocityCheck: -20
+  _yLandVelocityCheck: -25
 --- !u!114 &5146733724022236140
 MonoBehaviour:
   m_ObjectHideFlags: 0
