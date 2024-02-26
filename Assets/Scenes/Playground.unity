@@ -18949,7 +18949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _splatterPrefab: {fileID: 4686121967870239017, guid: b7b58a74b90b9ad43a137462883c17a8, type: 3}
   _deathVFX: {fileID: 5275956630321977794, guid: 63ea31d650ee5264496cbe1a3618bf23, type: 3}
-  _startingHealth: 5
+  _startingHealth: 3
 --- !u!114 &2011273896
 MonoBehaviour:
   m_ObjectHideFlags: 0
